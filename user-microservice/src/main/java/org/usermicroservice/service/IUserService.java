@@ -7,6 +7,7 @@ import org.usermicroservice.exceptions.EmailAlreadyExistsException;
 import org.usermicroservice.exceptions.EmptyEntityException;
 import org.usermicroservice.exceptions.UserNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserService {
     List<UserResponseDto> getAllUsers() throws UserNotFoundException;

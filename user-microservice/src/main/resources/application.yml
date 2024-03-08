@@ -24,6 +24,8 @@ rabbitmq:
     name: tasksExchange
 
 user:
+  tasksResponse:
+    queue: getUserTasksResponse
   existence:
     queue: userExistence
     response:

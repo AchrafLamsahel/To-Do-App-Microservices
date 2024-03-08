@@ -22,7 +22,6 @@ public class User {
     private String lastName;
     @Column(name = "email", unique = true)
     private String email;
-    @Column(name = "Role")
     private String role;
     @Column(unique = true)
     private String userName;
