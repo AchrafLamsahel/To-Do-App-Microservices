@@ -28,7 +28,7 @@ public class UserInputValidation {
             errors.add(new ErrorMessage("Last name is required."));
         }
 
-        if (isNull(userRequestDto.getUsername())) {
+        if (isNull(userRequestDto.getUserName())) {
             errors.add(new ErrorMessage("Username is required."));
         }
 

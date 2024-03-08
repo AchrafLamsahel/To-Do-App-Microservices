@@ -25,7 +25,7 @@ public class User {
     @Column(name = "Role")
     private String role;
     @Column(unique = true)
-    private String username;
+    private String userName;
     private Boolean isActive;
     private String password;
     @Transient
