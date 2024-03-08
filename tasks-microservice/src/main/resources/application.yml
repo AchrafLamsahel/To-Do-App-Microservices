@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: task-microservice
+  datasource:
+    url: jdbc:h2:mem:myTestDb;
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+  queue:
+    name: tasksQueue
+  exchange:
+    name: tasksExchange
+  routing:
+    key: tasksRouting
+  routing.json:
+    key: jsonRoutingKey
+user:
+  existence:
+    queue: userExistence
+    response:
+      queue: userExistenceResponse
+  tasks:
+    queue: getUserTasks
+    response:
+      queue: getUserTasksResponse
+    routingKey: getUserTasksRoutingKey
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
