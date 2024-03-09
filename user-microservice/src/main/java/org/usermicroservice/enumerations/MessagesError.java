@@ -1,7 +1,7 @@
 package org.usermicroservice.enumerations;
 
 public enum MessagesError {
-    USER_NOT_FOUND("Utilisateur introuvable"),
+    USER_NOT_FOUND("User not found. "),
     USER_NOT_FOUND_WITH_ID_EQUALS("User Not found with id =  "),
     USER_NOT_FOUND_WITH_EMAIL_EQUALS("User Not found with email =  "),
     USER_NOT_FOUND_WITH_USERNAME_EQUALS("User Not found with username =  "),
@@ -10,7 +10,7 @@ public enum MessagesError {
     LASTNAME_IS_REQUIRED("LastName is required."),
     PASSWORD_IS_REQUIRED("Password is required."),
     EMAIL_IS_REQUIRED("Email is required."),
-    EMAIL_IS_INVALID("Email is invalid, please check the format please."),
+    EMAIL_IS_INVALID("Email is invalid, please check the format."),
     EMAIL_ALREADY_EXISTS("Email already exists."),
     PHONE_NUMBER_NOT_VALID("Phone Number Not Valid");
 

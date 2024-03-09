@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.tasksmicroservice.dto.TaskRequestDto;
 import org.tasksmicroservice.dto.TaskResponseDto;
+import org.tasksmicroservice.enumerations.MessageError;
 import org.tasksmicroservice.exceptions.TaskAlreadyExistsException;
 import org.tasksmicroservice.exceptions.TaskNotFoundException;
 import org.tasksmicroservice.exceptions.UserNotFoundException;
@@ -47,7 +48,7 @@ public class TaskServiceImpl implements ITaskService {
             throw new ValidationException(validationErrors);
         }
         if (!userExistenceClient.checkUserExistence(taskDto.getUserId())) {
-            throw new UserNotFoundException("User with id: " + taskDto.getUserId() + " NOT found!");
+            throw new UserNotFoundException(MessageError.USER_NOT_FOUND_WITH_ID_EQUALS.getMessage() + taskDto.getUserId());
         }
         var task = MappingProfile.mapToEntity(taskDto);
         return MappingProfile.mapToDto(taskRepository.save(task));
@@ -56,7 +57,7 @@ public class TaskServiceImpl implements ITaskService {
     @Override
     public TaskResponseDto getTaskById(Long id) throws TaskNotFoundException {
         var task = taskRepository.findById(id).orElseThrow(
-                () -> new TaskNotFoundException("Task Not found !"));
+                () -> new TaskNotFoundException(MessageError.TASK_NOT_FOUND.getMessage()));
         return MappingProfile.mapToDto(task);
 
     }
@@ -64,7 +65,8 @@ public class TaskServiceImpl implements ITaskService {
     @Override
     public TaskResponseDto updateTask(Long id, TaskRequestDto taskDto) throws TaskNotFoundException {
         var task = taskRepository.findById(id).orElseThrow(
-                () -> new TaskNotFoundException("Task not Found with id = " + id));
+                () -> new TaskNotFoundException(
+                        MessageError.TASK_NOT_FOUND_WITH_ID_EQUALS.getMessage() + id));
         task.setDescription(taskDto.getDescription());
         task.setId(taskDto.getId());
         task.setStatus(taskDto.getStatus());
@@ -76,7 +78,8 @@ public class TaskServiceImpl implements ITaskService {
     @Override
     public void deleteTask(Long id) throws TaskNotFoundException {
         var task = taskRepository.findById(id)
-                .orElseThrow(() -> new TaskNotFoundException("Task Not found with id = "+ id));
+                .orElseThrow(() -> new TaskNotFoundException(
+                        MessageError.TASK_NOT_FOUND_WITH_ID_EQUALS.getMessage() + id));
         taskRepository.delete(task);
     }
 

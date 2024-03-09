@@ -2,6 +2,8 @@ package org.tasksmicroservice.utils;
 
 import org.modelmapper.spi.ErrorMessage;
 import org.tasksmicroservice.dto.TaskRequestDto;
+import org.tasksmicroservice.enumerations.MessageError;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -25,15 +27,15 @@ public class TaskInputValidation {
         var errors = new ArrayList<ErrorMessage>();
 
         if ( isNull(String.valueOf(taskRequestDto.getStatus())) ) {
-            errors.add(new ErrorMessage("Status is required."));
+            errors.add(new ErrorMessage(MessageError.STATUS_IS_REQUIRED.getMessage()));
         }
 
         if (isNull(taskRequestDto.getTitle())) {
-            errors.add(new ErrorMessage("Title is required."));
+            errors.add(new ErrorMessage(MessageError.TITLE_IS_REQUIRED.getMessage()));
         }
 
         if (dueDateIsValid(taskRequestDto.getDueDate())) {
-            errors.add(new ErrorMessage("DueDate is not Valid."));
+            errors.add(new ErrorMessage(MessageError.DUEDATE_IS_INVALID.getMessage()));
         }
 
         return errors;
