@@ -63,12 +63,12 @@ public class UserServiceImpl implements IUserService {
         var userEntity = MappingProfile.mapToUserEntity(userRequestDto);
         return MappingProfile.mapToUserDto(userRepository.save(userEntity));
     }
-
+    //TODO edit exception
     @Override
     public void deleteUser(Long userId) throws UserNotFoundException, EmptyEntityException {
         log.info("delete user by id : {}", userId );
         if (userId == null || userId <= 0) {
-            throw new EmptyEntityException("Empty Input ! --> id =  " + userId);
+            throw new EmptyEntityException(MessagesError.ID_IS_INVALID_EQUALS.getMessage() + userId);
         }
         if (!userRepository.existsById(userId)) {
             throw new UserNotFoundException(MessagesError.USER_NOT_FOUND_WITH_ID_EQUALS.getMessage()+userId);

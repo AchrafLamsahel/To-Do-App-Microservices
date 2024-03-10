@@ -11,6 +11,7 @@ public enum MessagesError {
     PASSWORD_IS_REQUIRED("Password is required."),
     EMAIL_IS_REQUIRED("Email is required."),
     EMAIL_IS_INVALID("Email is invalid, please check the format."),
+    ID_IS_INVALID_EQUALS("ID is invalid. ID = "),
     EMAIL_ALREADY_EXISTS("Email already exists."),
     PHONE_NUMBER_NOT_VALID("Phone Number Not Valid");
 
