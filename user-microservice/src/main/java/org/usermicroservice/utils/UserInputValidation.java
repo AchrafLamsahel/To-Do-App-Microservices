@@ -22,7 +22,7 @@ public class UserInputValidation {
     public static List<ErrorMessage> validate(UserRequestDto userRequestDto) {
         var errors = new ArrayList<ErrorMessage>();
 
-        if (isNull(userRequestDto.getFirstName())) {
+        if (isNull(userRequestDto.getFirstname())) {
             errors.add(new ErrorMessage(MessagesError.FIRSTNAME_IS_REQUIRED.getMessage()));
         }
 
@@ -30,16 +30,17 @@ public class UserInputValidation {
             errors.add(new ErrorMessage(MessagesError.PASSWORD_IS_REQUIRED.getMessage()));
         }
 
-        if (isNull(userRequestDto.getLastName())) {
+        if (isNull(userRequestDto.getLastname())) {
             errors.add(new ErrorMessage(MessagesError.LASTNAME_IS_REQUIRED.getMessage()));
         }
 
-        if (isNull(userRequestDto.getUserName())) {
+        if (isNull(userRequestDto.getUsername())) {
             errors.add(new ErrorMessage(MessagesError.USERNAME_IS_REQUIRED.getMessage()));
         }
 
         if (isNull(userRequestDto.getEmail())) {
             errors.add(new ErrorMessage(MessagesError.EMAIL_IS_REQUIRED.getMessage()));
+
         } else if (!isValidEmail(userRequestDto.getEmail())) {
             errors.add(new ErrorMessage(MessagesError.EMAIL_IS_INVALID.getMessage()));
         }

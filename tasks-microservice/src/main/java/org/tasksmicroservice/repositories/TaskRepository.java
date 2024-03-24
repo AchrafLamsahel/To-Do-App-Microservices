@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task,Long> {
     boolean existsById(Long id); // Method to check if a task ID exists
-    public List<Task> findByUserId(Long userId);
+    List<Task> findByUserId(Long userId);
     void deleteTasksByUserId(Long userId);
 }

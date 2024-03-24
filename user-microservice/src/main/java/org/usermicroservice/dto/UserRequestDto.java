@@ -13,9 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 public class UserRequestDto {
     private Long id;
-    private String firstName;
-    private String lastName;
-    private  String userName;
+    private String firstname;
+    private String lastname;
+    private  String username;
     private String password;
     private String email;
     private List<Task> tasks;

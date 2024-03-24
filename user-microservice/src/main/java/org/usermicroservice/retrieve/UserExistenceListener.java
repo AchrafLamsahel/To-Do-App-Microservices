@@ -11,7 +11,6 @@ import org.usermicroservice.repositories.UserRepository;
 @AllArgsConstructor
 public class UserExistenceListener {
     private final UserRepository userRepository;
-    private final RabbitTemplate rabbitTemplate;
 
     @RabbitListener(queues = "${user.existence.queue}")
     @SendTo("${user.existence.response.queue}")

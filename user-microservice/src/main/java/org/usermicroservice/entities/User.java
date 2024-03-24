@@ -1,30 +1,33 @@
 package org.usermicroservice.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.usermicroservice.dto.Task;
+import org.usermicroservice.enumerations.Active;
+import org.usermicroservice.enumerations.Role;
+
 import java.util.List;
 
-@Data
+@Entity(name = "users")
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String firstName;
-    private String lastName;
-
-    @Column(unique = true)
+@Getter
+@Setter
+public class User extends BaseEntity {
+    @Column(unique = true, nullable = false, updatable = false)
     private String email;
-    private String role;
-    private String userName;
-    private Boolean isActive = true;
+    @Column(unique = true, nullable = false)
+    private String username;
+    private String firstname;
+    private String lastname;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @Enumerated(EnumType.STRING)
+    private Active active;
+    @Embedded
+    private UserDetails userDetails;
     @Transient
     private List<Task> tasks;
 }

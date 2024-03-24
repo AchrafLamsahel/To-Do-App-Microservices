@@ -26,7 +26,7 @@ public class TasksMicroserviceApplication {
     @Bean
     CommandLineRunner start(ITaskService iTaskService){
         return args -> {
-            LocalDate localDate = LocalDate.of(2024, Month.MARCH, 20);
+            LocalDate localDate = LocalDate.of(2024, Month.JULY, 20);
 
             // Convertir la date en java.util.Date
             Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());

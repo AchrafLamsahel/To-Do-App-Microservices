@@ -21,13 +21,25 @@ public class MappingProfile {
             public UserResponseDto convert(MappingContext<User, UserResponseDto> context) {
                 User source = context.getSource();
                 UserResponseDto destination = new UserResponseDto();
-                destination.setId(source.getId());
                 destination.setEmail(source.getEmail());
-                destination.setFullName(source.getFirstName() + " " + source.getLastName());
                 destination.setTasks(source.getTasks());
                 return destination;
             }
         };
         modelMapper.addConverter(userToUserResponseDtoConverter);
+    }
+
+    public static UserResponseDto toUserResponseDto(User user){
+        if( user == null) return null;
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(user.getId());
+        userResponseDto.setUsername(user.getUsername());
+        userResponseDto.setActive(user.getActive());
+        userResponseDto.setEmail(user.getEmail());
+        userResponseDto.setPassword(user.getPassword());
+        userResponseDto.setRole(user.getRole());
+        userResponseDto.setLastname(user.getLastname());
+        userResponseDto.setTasks(user.getTasks());
+        return userResponseDto;
     }
 }

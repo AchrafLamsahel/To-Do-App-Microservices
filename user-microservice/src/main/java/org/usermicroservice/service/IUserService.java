@@ -1,5 +1,6 @@
 package org.usermicroservice.service;
 
+import org.usermicroservice.dto.UserDto;
 import org.usermicroservice.dto.UserRequestDto;
 import org.usermicroservice.dto.UserResponseDto;
 import org.usermicroservice.entities.User;
@@ -12,7 +13,7 @@ import java.util.Optional;
 public interface IUserService {
     List<UserResponseDto> getAllUsers() throws UserNotFoundException;
     UserResponseDto getUserById(Long id) throws  UserNotFoundException, EmptyEntityException ;
-    UserResponseDto createUser(UserRequestDto userDto) throws EmailAlreadyExistsException;
+    UserDto createUser(UserRequestDto userDto) throws EmailAlreadyExistsException;
     void deleteUser(Long id) throws  UserNotFoundException, EmptyEntityException;
     UserResponseDto updateUser(Long id, UserRequestDto userDto) throws UserNotFoundException;
     UserResponseDto getUserByEmail(String email) throws UserNotFoundException;

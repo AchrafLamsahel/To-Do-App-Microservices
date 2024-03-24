@@ -10,9 +10,9 @@ import java.util.List;
 
 @FeignClient(name="TASKS-SERVICE")
 public interface TaskClient {
-    @GetMapping("/api/v1/tasks/user/{userId}")
+    @GetMapping("/users/{userId}")
     List<Task> findByUserId(@PathVariable("userId") Long userId) throws UserNotFoundException;
-    @DeleteMapping("/api/v1/tasks/{id}")
+    @DeleteMapping("/tasks/{id}")
     String deleteTask(@PathVariable Long id) throws UserNotFoundException;
 
 }
