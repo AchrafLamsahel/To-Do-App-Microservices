@@ -7,3 +7,6 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+spring:
+  banner:
+    location: classpath:/banner.txt

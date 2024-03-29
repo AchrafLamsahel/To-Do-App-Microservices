@@ -1,6 +1,8 @@
 package org.gatewaymicroservice.filter;
 
-import org.gatewaymicroservice.util.JwtUtil;
+import lombok.AllArgsConstructor;
+import org.gatewaymicroservice.routerFilter.RouterValidator;
+import org.gatewaymicroservice.utils.JwtUtil;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.http.HttpStatus;
@@ -14,29 +16,18 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Component
+@AllArgsConstructor
 public class JwtAuthenticationFilter implements GatewayFilter {
     private final JwtUtil jwtUtil;
-
-    public JwtAuthenticationFilter(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
-    }
+    private final RouterValidator routerValidator;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-
-        final List<String> apiEndpoints = List.of("/auth/login", "/auth/register", "/eureka");
-
-        Predicate<ServerHttpRequest> isApiSecured = r -> apiEndpoints.stream()
-                .noneMatch(uri -> r.getURI().getPath().contains(uri));
-
-        if (isApiSecured.test(request)) {
+        if (routerValidator.isSecured.test(request)) {
             if (authMissing(request)) return onError(exchange);
-
             String token = request.getHeaders().getOrEmpty("Authorization").get(0);
-
             if (token != null && token.startsWith("Bearer ")) token = token.substring(7);
-
             try {
                 jwtUtil.validateToken(token);
             } catch (Exception e) {

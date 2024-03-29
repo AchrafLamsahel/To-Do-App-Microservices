@@ -2,6 +2,7 @@ package org.usermicroservice.web;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.usermicroservice.dto.UserDto;
 import org.usermicroservice.dto.UserRequestDto;
@@ -15,6 +16,7 @@ import java.util.Collection;
 public class UserController {
     private final IUserService iUserService;
     @GetMapping("/")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Collection<UserResponseDto> getAllUsers() {
         return iUserService.getAllUsers();
     }

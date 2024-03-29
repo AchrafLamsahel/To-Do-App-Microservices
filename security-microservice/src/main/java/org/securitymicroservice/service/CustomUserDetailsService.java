@@ -1,6 +1,5 @@
 package org.securitymicroservice.service;
 
-
 import org.securitymicroservice.client.UserServiceClient;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
